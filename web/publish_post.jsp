@@ -1,6 +1,6 @@
-<%@ page import="cn.edu.zjut.po.MainSection" %>
+<%@ page import="cn.edu.ccut.po.MainSection" %>
 <%@ page import="java.util.List" %>
-<%@ page import="cn.edu.zjut.po.SubSection" %>
+<%@ page import="cn.edu.ccut.po.SubSection" %>
 <%@ page import="java.util.Set" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%--

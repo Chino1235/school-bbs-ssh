@@ -6,7 +6,7 @@
 
 <struts>
     <!-- 指定全局国际化资源文件 -->
-    <constant name="struts.custom.i18n.resources" value="cn.edu.zjut.local.message"/>
+    <constant name="struts.custom.i18n.resources" value="cn.edu.ccut.local.message"/>
     <!-- 开启动态方法调用 -->
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <constant name="struts.devMode" value="false"/>
@@ -14,7 +14,7 @@
     <constant name="struts.action.excludePattern" value="/static/.*?"/>
     <package name="strutsBean" extends="struts-default" namespace="/">
         <interceptors>
-            <interceptor name="authority" class="cn.edu.zjut.interceptors.AuthorityInterceptor"/>
+            <interceptor name="authority" class="cn.edu.ccut.interceptors.AuthorityInterceptor"/>
         </interceptors>
         <action name="login" class="userAction" method="login">
             <result type="chain" name="success">homePage</result>

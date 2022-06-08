@@ -29,7 +29,7 @@
 
     <filter>
         <filter-name>accessFilter</filter-name>
-        <filter-class>cn.edu.zjut.filter.AccessFilter</filter-class>
+        <filter-class>cn.edu.ccut.filter.AccessFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>accessFilter</filter-name>

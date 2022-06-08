@@ -40,7 +40,7 @@
     <!-- 定义事务拦截切面 -->
     <aop:config proxy-target-class="true">
         <aop:pointcut id="allServiceMethod"
-                      expression="execution(* cn.edu.zjut.serviceImpl.*.*(..))"/> <!-- 切入点 service包中的所有类的所有方法 -->
+                      expression="execution(* cn.edu.ccut.serviceImpl.*.*(..))"/> <!-- 切入点 service包中的所有类的所有方法 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod"/>
     </aop:config>
 
@@ -78,152 +78,152 @@
         </property>
         <property name="mappingResources">
             <list>
-                <value>cn/edu/zjut/po/BestTopic.hbm.xml</value>
-                <value>cn/edu/zjut/po/BlackList.hbm.xml</value>
-                <value>cn/edu/zjut/po/LoginLog.hbm.xml</value>
-                <value>cn/edu/zjut/po/MainSection.hbm.xml</value>
-                <value>cn/edu/zjut/po/Notice.hbm.xml</value>
-                <value>cn/edu/zjut/po/Reply.hbm.xml</value>
-                <value>cn/edu/zjut/po/SubSection.hbm.xml</value>
-                <value>cn/edu/zjut/po/Topic.hbm.xml</value>
-                <value>cn/edu/zjut/po/User.hbm.xml</value>
-                <value>cn/edu/zjut/po/SensitiveWord.hbm.xml</value>
+                <value>cn/edu/ccut/po/BestTopic.hbm.xml</value>
+                <value>cn/edu/ccut/po/BlackList.hbm.xml</value>
+                <value>cn/edu/ccut/po/LoginLog.hbm.xml</value>
+                <value>cn/edu/ccut/po/MainSection.hbm.xml</value>
+                <value>cn/edu/ccut/po/Notice.hbm.xml</value>
+                <value>cn/edu/ccut/po/Reply.hbm.xml</value>
+                <value>cn/edu/ccut/po/SubSection.hbm.xml</value>
+                <value>cn/edu/ccut/po/Topic.hbm.xml</value>
+                <value>cn/edu/ccut/po/User.hbm.xml</value>
+                <value>cn/edu/ccut/po/SensitiveWord.hbm.xml</value>
             </list>
         </property>
     </bean>
 
     <!--用户登录日志切面-->
-    <bean name="logAspect" class="cn.edu.zjut.aspect.LogAspect"/>
+    <bean name="logAspect" class="cn.edu.ccut.aspect.LogAspect"/>
     <aop:config>
         <aop:aspect id="log" ref="logAspect">
-            <aop:pointcut id="pointcut" expression="execution(* cn.edu.zjut.action.*.login*(..))"/>
+            <aop:pointcut id="pointcut" expression="execution(* cn.edu.ccut.action.*.login*(..))"/>
             <aop:after method="recordLog" pointcut-ref="pointcut"/>
         </aop:aspect>
     </aop:config>
 
-    <bean name="baseDAO" class="cn.edu.zjut.db.BaseHibernateDAO">
+    <bean name="baseDAO" class="cn.edu.ccut.db.BaseHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean name="userDAO" class="cn.edu.zjut.daoImpl.UserDaoImpl" parent="baseDAO"/>
-    <bean name="adminDao" class="cn.edu.zjut.daoImpl.AdminDaoImpl" parent="baseDAO"/>
-    <bean name="topicDAO" class="cn.edu.zjut.daoImpl.TopicDaoImpl" parent="baseDAO"/>
-    <bean name="mainSectionDao" class="cn.edu.zjut.daoImpl.MainSectionDaoImpl" parent="baseDAO"/>
-    <bean name="subSectionDao" class="cn.edu.zjut.daoImpl.SubSectionDaoImpl" parent="baseDAO"/>
-    <bean name="blackListDao" class="cn.edu.zjut.daoImpl.BlackListDaoImpl" parent="baseDAO"/>
-    <bean name="noticeDao" class="cn.edu.zjut.daoImpl.NoticeDaoImpl" parent="baseDAO"/>
-    <bean name="sensitiveWordDao" class="cn.edu.zjut.daoImpl.SensitiveWordDaoImpl" parent="baseDAO"/>
-    <bean name="replyDao" class="cn.edu.zjut.daoImpl.ReplyDaoImpl" parent="baseDAO"/>
-    <bean name="bestTopicDao" class="cn.edu.zjut.daoImpl.BestTopicDaoImpl" parent="baseDAO"/>
+    <bean name="userDAO" class="cn.edu.ccut.daoImpl.UserDaoImpl" parent="baseDAO"/>
+    <bean name="adminDao" class="cn.edu.ccut.daoImpl.AdminDaoImpl" parent="baseDAO"/>
+    <bean name="topicDAO" class="cn.edu.ccut.daoImpl.TopicDaoImpl" parent="baseDAO"/>
+    <bean name="mainSectionDao" class="cn.edu.ccut.daoImpl.MainSectionDaoImpl" parent="baseDAO"/>
+    <bean name="subSectionDao" class="cn.edu.ccut.daoImpl.SubSectionDaoImpl" parent="baseDAO"/>
+    <bean name="blackListDao" class="cn.edu.ccut.daoImpl.BlackListDaoImpl" parent="baseDAO"/>
+    <bean name="noticeDao" class="cn.edu.ccut.daoImpl.NoticeDaoImpl" parent="baseDAO"/>
+    <bean name="sensitiveWordDao" class="cn.edu.ccut.daoImpl.SensitiveWordDaoImpl" parent="baseDAO"/>
+    <bean name="replyDao" class="cn.edu.ccut.daoImpl.ReplyDaoImpl" parent="baseDAO"/>
+    <bean name="bestTopicDao" class="cn.edu.ccut.daoImpl.BestTopicDaoImpl" parent="baseDAO"/>
 
-    <bean name="loginLog" class="cn.edu.zjut.daoImpl.LoginLogDaoImpl" parent="baseDAO"/>
+    <bean name="loginLog" class="cn.edu.ccut.daoImpl.LoginLogDaoImpl" parent="baseDAO"/>
 
     <!--Service-->
-    <bean name="userService" class="cn.edu.zjut.serviceImpl.UserServiceImpl">
+    <bean name="userService" class="cn.edu.ccut.serviceImpl.UserServiceImpl">
         <property name="userDao" ref="userDAO"/>
         <property name="sensitiveWordDao" ref="sensitiveWordDao"/>
         <property name="blackListDao" ref="blackListDao"/>
     </bean>
-    <bean name="adminService" class="cn.edu.zjut.serviceImpl.AdminServiceImpl">
+    <bean name="adminService" class="cn.edu.ccut.serviceImpl.AdminServiceImpl">
         <property name="adminDAO" ref="adminDao"/>
     </bean>
-    <bean name="topicService" class="cn.edu.zjut.serviceImpl.TopicServiceImpl">
+    <bean name="topicService" class="cn.edu.ccut.serviceImpl.TopicServiceImpl">
         <property name="topicDao" ref="topicDAO"/>
     </bean>
-    <bean name="mainSectionService" class="cn.edu.zjut.serviceImpl.MainSectionServiceImpl">
+    <bean name="mainSectionService" class="cn.edu.ccut.serviceImpl.MainSectionServiceImpl">
         <property name="mainSectionDao" ref="mainSectionDao"/>
     </bean>
-    <bean name="subSectionService" class="cn.edu.zjut.serviceImpl.SubSectionServiceImpl">
+    <bean name="subSectionService" class="cn.edu.ccut.serviceImpl.SubSectionServiceImpl">
         <property name="subSectionDao" ref="subSectionDao"/>
     </bean>
-    <bean name="blackListService" class="cn.edu.zjut.serviceImpl.BlackListServiceImpl">
+    <bean name="blackListService" class="cn.edu.ccut.serviceImpl.BlackListServiceImpl">
         <property name="blackListDao" ref="blackListDao"/>
     </bean>
 
-    <bean name="noticeService" class="cn.edu.zjut.serviceImpl.NoticeServiceImpl">
+    <bean name="noticeService" class="cn.edu.ccut.serviceImpl.NoticeServiceImpl">
         <property name="noticeDao" ref="noticeDao"/>
     </bean>
 
-    <bean name="sensitiveService" class="cn.edu.zjut.serviceImpl.SensitiveServiceImpl">
+    <bean name="sensitiveService" class="cn.edu.ccut.serviceImpl.SensitiveServiceImpl">
         <property name="sensitiveWordDao" ref="sensitiveWordDao"/>
     </bean>
 
-    <bean name="replyService" class="cn.edu.zjut.serviceImpl.ReplyServiceImpl">
+    <bean name="replyService" class="cn.edu.ccut.serviceImpl.ReplyServiceImpl">
         <property name="replyDao" ref="replyDao"/>
     </bean>
-    <bean name="bestTopicService" class="cn.edu.zjut.serviceImpl.BestTopivServiceImpl">
+    <bean name="bestTopicService" class="cn.edu.ccut.serviceImpl.BestTopivServiceImpl">
         <property name="bestTopicDao" ref="bestTopicDao"/>
     </bean>
 
-    <bean name="loginLogService" class="cn.edu.zjut.serviceImpl.LoginLogServiceImpl">
+    <bean name="loginLogService" class="cn.edu.ccut.serviceImpl.LoginLogServiceImpl">
         <property name="loginLogDao" ref="loginLog"/>
     </bean>
 
-    <bean name="mailUntil" class="cn.edu.zjut.util.MailUtil"/>
+    <bean name="mailUntil" class="cn.edu.ccut.util.MailUtil"/>
 
     <!--Action-->
-    <bean name="baseAction" class="cn.edu.zjut.action.BaseAction"/>
-    <bean name="userAction" class="cn.edu.zjut.action.UserAction" parent="baseAction" scope="prototype">
+    <bean name="baseAction" class="cn.edu.ccut.action.BaseAction"/>
+    <bean name="userAction" class="cn.edu.ccut.action.UserAction" parent="baseAction" scope="prototype">
         <property name="userService" ref="userService"/>
         <property name="mailUtil" ref="mailUntil"/>
     </bean>
-    <bean name="adminAction" class="cn.edu.zjut.action.AdminAction" parent="baseAction" scope="prototype">
+    <bean name="adminAction" class="cn.edu.ccut.action.AdminAction" parent="baseAction" scope="prototype">
         <property name="adminService" ref="adminService"/>
     </bean>
-    <bean name="topicAction" class="cn.edu.zjut.action.TopicAction" parent="baseAction" scope="prototype">
+    <bean name="topicAction" class="cn.edu.ccut.action.TopicAction" parent="baseAction" scope="prototype">
         <property name="topicService" ref="topicService"/>
         <property name="userService" ref="userService"/>
         <property name="replyService" ref="replyService"/>
     </bean>
-    <bean name="publishTopicAction" class="cn.edu.zjut.action.PublishTopicAction" parent="baseAction" scope="prototype">
+    <bean name="publishTopicAction" class="cn.edu.ccut.action.PublishTopicAction" parent="baseAction" scope="prototype">
         <property name="topicService" ref="topicService"/>
         <property name="mainSectionService" ref="mainSectionService"/>
         <property name="subSectionService" ref="subSectionService"/>
         <property name="blackListService" ref="blackListService"/>
     </bean>
-    <bean name="searchAction" class="cn.edu.zjut.action.SearchAction" parent="baseAction" scope="prototype">
+    <bean name="searchAction" class="cn.edu.ccut.action.SearchAction" parent="baseAction" scope="prototype">
         <property name="topicService" ref="topicService"/>
     </bean>
 
-    <bean name="mainAction" class="cn.edu.zjut.action.MainAction" parent="baseAction" scope="prototype">
+    <bean name="mainAction" class="cn.edu.ccut.action.MainAction" parent="baseAction" scope="prototype">
         <property name="topicService" ref="topicService"/>
         <property name="mainSectionService" ref="mainSectionService"/>
         <property name="noticeService" ref="noticeService"/>
         <property name="bestTopicService" ref="bestTopicService"/>
     </bean>
 
-    <bean name="limitUserAction" class="cn.edu.zjut.action.LimitUserAction" parent="baseAction" scope="prototype">
+    <bean name="limitUserAction" class="cn.edu.ccut.action.LimitUserAction" parent="baseAction" scope="prototype">
         <property name="userService" ref="userService"/>
         <property name="blackListService" ref="blackListService"/>
     </bean>
 
-    <bean name="noticeAction" class="cn.edu.zjut.action.NoticeAction" parent="baseAction" scope="prototype">
+    <bean name="noticeAction" class="cn.edu.ccut.action.NoticeAction" parent="baseAction" scope="prototype">
         <property name="noticeService" ref="noticeService"/>
     </bean>
 
-    <bean name="updateAdmin" class="cn.edu.zjut.action.AdminAction" parent="baseAction" scope="prototype">
+    <bean name="updateAdmin" class="cn.edu.ccut.action.AdminAction" parent="baseAction" scope="prototype">
         <property name="adminService" ref="adminService"/>
     </bean>
 
-    <bean name="sensitiveWordAction" class="cn.edu.zjut.action.SensitiveWordAction" parent="baseAction"
+    <bean name="sensitiveWordAction" class="cn.edu.ccut.action.SensitiveWordAction" parent="baseAction"
           scope="prototype">
         <property name="sensitiveWordService" ref="sensitiveService"/>
     </bean>
 
-    <bean name="createDiscussAction" class="cn.edu.zjut.action.CreateDiscussAction" parent="baseAction"
+    <bean name="createDiscussAction" class="cn.edu.ccut.action.CreateDiscussAction" parent="baseAction"
           scope="prototype">
         <property name="mainSectionService" ref="mainSectionService"/>
         <property name="subSectionService" ref="subSectionService"/>
     </bean>
-    <bean name="replyAction" class="cn.edu.zjut.action.ReplyAction" parent="baseAction" scope="prototype">
+    <bean name="replyAction" class="cn.edu.ccut.action.ReplyAction" parent="baseAction" scope="prototype">
         <property name="blackListService" ref="blackListService"/>
         <property name="topicService" ref="topicService"/>
         <property name="replyService" ref="replyService"/>
     </bean>
-    <bean name="bestTopicAction" class="cn.edu.zjut.action.BestTopicAction" parent="baseAction" scope="prototype">
+    <bean name="bestTopicAction" class="cn.edu.ccut.action.BestTopicAction" parent="baseAction" scope="prototype">
         <property name="bestTopicService" ref="bestTopicService"/>
         <property name="topicService" ref="topicService"/>
     </bean>
-    <bean name="detailAction" class="cn.edu.zjut.action.DetailAction" parent="baseAction" scope="prototype">
+    <bean name="detailAction" class="cn.edu.ccut.action.DetailAction" parent="baseAction" scope="prototype">
         <property name="mainSectionService" ref="mainSectionService"/>
         <property name="topicService" ref="topicService"/>
     </bean>
